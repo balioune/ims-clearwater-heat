@@ -101,7 +101,7 @@ resources:
       flavor: { get_param: flavor }
       key_name: { get_param: key_name }
       networks:
-        - port: { get_resource: port }
+        - network: { get_param: project_net }
       user_data:
         str_replace:
           params:
