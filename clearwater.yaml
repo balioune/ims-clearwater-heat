@@ -160,7 +160,7 @@ resources:
       dns_security_group: { get_attr: [ security_groups, dns ] }
       zone: { get_param: zone }
       dnssec_key: { get_param: dnssec_key }
-	  project_net: { get_param: project_net }
+      project_net: { get_param: project_net }
 
   ellis:
     type: ./ellis.yaml
