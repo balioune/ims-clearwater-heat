@@ -178,6 +178,7 @@ resources:
       dn_range_length: { get_param: dn_range_length }
       dns_ip: { get_attr: [ dns, private_ip ] }
       dnssec_key: { get_param: dnssec_key }
+      project_net: { get_param: project_net }
 
   bono:
     type: OS::Heat::ResourceGroup
@@ -200,6 +201,7 @@ resources:
           dnssec_key: { get_param: dnssec_key }
           etcd_ip: { get_attr: [ ellis, private_ip ] }
           index: __index__
+          project_net: { get_param: project_net }
 
   sprout:
     type: OS::Heat::ResourceGroup
@@ -223,6 +225,7 @@ resources:
           dnssec_key: { get_param: dnssec_key }
           etcd_ip: { get_attr: [ ellis, private_ip ] }
           index: __index__
+          project_net: { get_param: project_net }
 
   homer:
     type: OS::Heat::ResourceGroup
@@ -245,6 +248,7 @@ resources:
           dnssec_key: { get_param: dnssec_key }
           etcd_ip: { get_attr: [ ellis, private_ip ] }
           index: __index__
+          project_net: { get_param: project_net }
 
   homestead:
     type: OS::Heat::ResourceGroup
@@ -267,6 +271,7 @@ resources:
           dnssec_key: { get_param: dnssec_key }
           etcd_ip: { get_attr: [ ellis, private_ip ] }
           index: __index__
+          project_net: { get_param: project_net }
 
   ralf:
     type: OS::Heat::ResourceGroup
@@ -289,6 +294,7 @@ resources:
           dnssec_key: { get_param: dnssec_key }
           etcd_ip: { get_attr: [ ellis, private_ip ] }
           index: __index__
+          project_net: { get_param: project_net }
 
 outputs:
   zone:

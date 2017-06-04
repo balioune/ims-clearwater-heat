@@ -97,6 +97,9 @@ parameters:
     type: number
     description: Index of this Homestead node in the Homestead cluster
     default: 0
+  project_net:
+    type: string
+    description: ID or name of tenant network
 
 resources:
   port:
@@ -111,7 +114,6 @@ resources:
     type: OS::Neutron::FloatingIP
     properties:
       floating_network_id: { get_param: public_net_id }
-      port_id: { get_resource: port }
 
   server:
     type: OS::Nova::Server
@@ -121,7 +123,7 @@ resources:
       flavor: { get_param: flavor }
       key_name: { get_param: key_name }
       networks:
-        - port: { get_resource: port }
+        - network: { get_param: project_net }
       user_data:
         str_replace:
           params:
@@ -183,6 +185,12 @@ resources:
             echo 'nameserver __dns_ip__' > /etc/dnsmasq.resolv.conf
             echo 'RESOLV_CONF=/etc/dnsmasq.resolv.conf' >> /etc/default/dnsmasq
             service dnsmasq force-reload
+
+  association:
+    type: OS::Neutron::FloatingIPAssociation
+    properties:
+      floatingip_id: { get_resource: floating_ip }
+      port_id: {get_attr: [server, addresses, {get_param: project_net}, 0, port]}
 
 outputs:
   public_ip:
