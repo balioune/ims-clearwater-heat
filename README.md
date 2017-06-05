@@ -14,11 +14,10 @@ Main modifications:
 
 - modify the way to get floating ip for server resource
 
-          floating_ip:
-            type: OS::Neutron::FloatingIP
-            properties:
-              floating_network_id: { get_param: public_net_id }
-              port_id: { get_resource: port }
+            floating_ip:
+              type: OS::Neutron::FloatingIP
+              properties:
+                floating_network_id: { get_param: public_net_id }
 			  
           ....
           server:
